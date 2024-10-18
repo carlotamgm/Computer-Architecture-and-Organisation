@@ -1,0 +1,51 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.54" author="Qfsm">
+  <machine nummooreout="0" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Calibri" statefontitalic="0" author="" description="" version="" name="multi" arrowtype="3" numbits="3" statefontweight="50" statefont="Calibri" numin="0" transfontsize="8" transfontweight="50" type="2" numout="0" initialstate="4">
+    <outputnames_moore></outputnames_moore>
+    <inputnames></inputnames>
+    <outputnames></outputnames>
+    <itransition ypos="277" endx="82" xpos="2" endy="277"/>
+    <state pencolor="0" exit_actions="" radius="55" description="Instrucción MOV: Se guarda en el BR32 (dirección de rd) el valor de K. Se salta a la siguiente instrucción. " finalstate="0" entry_actions="BR(rd)&lt;-K; PC&lt;-PC+1" moore_outputs="" ypos="99" code="1" xpos="490" linewidth="1">MOV (Q4)</state>
+    <state pencolor="0" exit_actions="" radius="55" description="Instrucción ADD: Se suman los valores de los registros RA y RB (previamente guardados) y se guarda el resultado en RC." finalstate="0" entry_actions="RC&lt;-RA+RB" moore_outputs="" ypos="369" code="2" xpos="596" linewidth="1">ADD (Q2)</state>
+    <state pencolor="0" exit_actions="" radius="56" description="Se guarda el contenido de RC en el BR32 (dirección del registro rd). Se salta a la siguiente instrucción." finalstate="0" entry_actions="BR(rd)&lt;-RC; PC&lt;-PC+1" moore_outputs="" ypos="470" code="3" xpos="401" linewidth="1">WRITE_ADD  (Q3)</state>
+    <state pencolor="0" exit_actions="" radius="56" description="" finalstate="0" entry_actions="" moore_outputs="" ypos="277" code="4" xpos="138" linewidth="1">reset (Q0)</state>
+    <state pencolor="0" exit_actions="" radius="56" description="El programa inicia cargando los valores correspondientes en RA y RB, independientemente de si es o no una operación de ADD" finalstate="0" entry_actions="RA&lt;-BR(ra); RB&lt;-BR(rb)" moore_outputs="" ypos="273" code="0" xpos="391" linewidth="1">OPS (Q1)</state>
+    <transition c1x="353.5333895174391" c2y="201.6371565756919" c1y="161.0336780358551" description="" straight="1" type="2" ypos="120.4301994960184" endx="181.9065661698587" xpos="439.3468011912293" endy="242.2406351155286" c2x="267.7199778436489">
+      <from>1</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs>regWr=1,PC=1</outputs>
+    </transition>
+    <transition c1x="516.3917827081209" c2y="435.4092118035621" c1y="414.6506310917925" description="" straight="1" type="2" ypos="393.892050380023" endx="455.2648139783146" xpos="546.9552670730241" endy="456.1677925153316" c2x="485.8282983432177">
+      <from>2</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="293.2406735847814" c2y="355.0948234442277" c1y="406.9879345449896" description="" straight="1" type="2" ypos="458.8810456457515" endx="187.4921233154355" xpos="346.1149487194542" endy="303.2017123434658" c2x="240.3663984501084">
+      <from>3</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs>regWr=1,PC=1</outputs>
+    </transition>
+    <transition c1x="241.0065118602335" c2y="273.4062334735761" c1y="275.4588138368582" description="" straight="1" type="2" ypos="277.5113942001402" endx="335.0242057499962" xpos="193.9976649153522" endy="271.353653110294" c2x="288.0153588051149">
+      <from>4</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs>RA=1, RB=1</outputs>
+    </transition>
+    <transition c1x="435.2480641817309" c2y="171.9352060358265" c1y="199.6830658241246" description="" straight="1" type="2" ypos="227.4309256124228" endx="458.6455148486538" xpos="423.5493388482694" endy="144.1873462475283" c2x="446.9467895151923">
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0">mux_c=1</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="474.8142650459049" c2y="344.1018132200093" c1y="320.4255469907016" description="" straight="1" type="2" ypos="296.7492807613939" endx="541.0135752192615" xpos="441.7146099592266" endy="367.7780794493169" c2x="507.9139201325832">
+      <from>0</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0">mux_c=0</inputs>
+      <outputs>RC=1</outputs>
+    </transition>
+  </machine>
+</qfsmproject>
